@@ -2232,8 +2232,13 @@
     <div class="chapter-label" style="position:absolute;top:5vh;left:max(40px,2.5vw)">会画页面，就是会设计吗？</div>
     <div style="flex:1;display:grid;grid-template-columns:repeat(2,auto);justify-content:center;justify-items:center;align-content:start;row-gap:calc(4vh + 30px);column-gap:2.5vw;padding-top:var(--title-top);padding-left:max(24px,2vw);padding-right:max(24px,2vw);position:relative">
       <h2 data-anim="head" class="page-title" style="grid-column:1 / -1;text-align:center">两张图，哪一张更好？</h2>
-      <img data-anim="bottom" src="images/zhifu1.png" alt="支小宝页面示例 1" style="width:auto;max-width:100%;height:58vh;object-fit:contain;display:block;border-radius:24px;box-shadow:0 20px 60px rgba(73,93,180,.18)"/>
-      <img data-anim="bottom" src="images/zhifu2.png" alt="支小宝页面示例 2" style="width:auto;max-width:100%;height:58vh;object-fit:contain;display:block;border-radius:24px;box-shadow:0 20px 60px rgba(73,93,180,.18)"/>
+      <img class="compare-empty-shot" data-anim="bottom" src="images/zhifu1.png" alt="支小宝页面示例 1" style="width:auto;max-width:100%;height:58vh;object-fit:contain;display:block;border-radius:24px;box-shadow:0 20px 60px rgba(73,93,180,.18);transition:opacity .6s cubic-bezier(.22,1,.36,1)"/>
+      <img class="compare-empty-shot" data-anim="bottom" src="images/zhifu2.png" alt="支小宝页面示例 2" style="width:auto;max-width:100%;height:58vh;object-fit:contain;display:block;border-radius:24px;box-shadow:0 20px 60px rgba(73,93,180,.18);transition:opacity .6s cubic-bezier(.22,1,.36,1)"/>
+      <div class="compare-verdict" aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-46%) scale(.96);opacity:0;visibility:hidden;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);padding:5.2vh 5vw;border-radius:22px;background:linear-gradient(135deg,#190058,#3E29AD);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);border:1px solid rgba(255,255,255,.45);box-shadow:0 24px 80px rgba(20,10,80,.5),inset 0 1px 0 rgba(255,255,255,.5);max-width:min(72vw,1080px)">
+        <div style="font-family:var(--cover-font-title);font-weight:600;font-size:min(3.4vw,5.8vh);line-height:1.4;color:#fff;text-shadow:0 2px 24px rgba(30,40,120,.35);text-align:center">
+          没有绝对更好的页面，只有更适合当前目标、用户和场景的方案。
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -3728,6 +3733,12 @@ if(motion){
       imgs.forEach(im=>im.style.opacity='1');
       if(v){ v.style.opacity='0'; v.style.visibility='hidden'; v.style.transform='translate(-50%,-46%) scale(.96)'; }
     }
+    if(slide.id==='slide-compare-empty'){
+      const imgs=slide.querySelectorAll('.compare-empty-shot');
+      const v=slide.querySelector('.compare-verdict');
+      imgs.forEach(im=>im.style.opacity='1');
+      if(v){ v.style.opacity='0'; v.style.visibility='hidden'; v.style.transform='translate(-50%,-46%) scale(.96)'; }
+    }
 
     if(slide.id==='slide-role'){
       slide.classList.remove('role-arc-focus');
@@ -3863,6 +3874,18 @@ if(motion){
     if(slide.id==='slide-compare'){
       const v=slide.querySelector('.compare-verdict');
       const imgs=slide.querySelectorAll('.compare-imgs img');
+      if(v && v.style.visibility!=='visible'){
+        imgs.forEach(im=>im.style.opacity='.1');
+        v.style.visibility='visible';
+        v.style.opacity='1';
+        v.style.transform='translate(-50%,-50%) scale(1)';
+        return true;
+      }
+      return false;
+    }
+    if(slide.id==='slide-compare-empty'){
+      const v=slide.querySelector('.compare-verdict');
+      const imgs=slide.querySelectorAll('.compare-empty-shot');
       if(v && v.style.visibility!=='visible'){
         imgs.forEach(im=>im.style.opacity='.1');
         v.style.visibility='visible';
