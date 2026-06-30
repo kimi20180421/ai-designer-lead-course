@@ -1630,10 +1630,12 @@
     grid-column:5;grid-row:2;
     background:linear-gradient(180deg,#f0f3ff 0%,#e7ecff 100%);
   }
+  #slide-call-static,
   #slide-final-scroll{
     padding:0;
     overflow:hidden;
   }
+  #slide-call-static .canvas-card,
   #slide-final-scroll .canvas-card{
     overflow:hidden;
     padding:0;
@@ -1647,6 +1649,19 @@
     overflow:hidden;
     padding:0;
     display:block;
+  }
+  #call-static-image{
+    position:absolute;
+    top:0;
+    left:-9%;
+    width:118%;
+    height:auto;
+    display:block;
+    z-index:2;
+    transform:translateY(0);
+    transition:transform .88s cubic-bezier(.18,.88,.22,1);
+    will-change:transform;
+    pointer-events:none;
   }
   #final-scroll-image{
     position:absolute;
@@ -1671,6 +1686,35 @@
     z-index:2;
     transform:translateY(-50%);
     pointer-events:none;
+  }
+  #call-static-image-2,
+  #call-static-image-3{
+    position:absolute;
+    top:50%;
+    left:0;
+    width:100%;
+    height:auto;
+    display:block;
+    z-index:2;
+    transform:translateY(-50%);
+    pointer-events:none;
+  }
+  #slide-call-static-3{
+    padding:0;
+    overflow:hidden;
+  }
+  #slide-call-static-3 .canvas-card{
+    overflow:hidden;
+    padding:0;
+    display:block;
+  }
+  #call-static-image-3{
+    top:0;
+    left:0;
+    width:100%;
+    transform:translateY(0);
+    transition:transform .88s cubic-bezier(.18,.88,.22,1);
+    will-change:transform;
   }
   .qa-summary-grid{
     width:min(90vw,1680px);
@@ -2470,7 +2514,7 @@
           <div class="vibe-link-list">
             <a class="vibe-link-item" href="https://huang-jie.com/" target="_blank" rel="noreferrer">https://huang-jie.com/</a>
             <a class="vibe-link-item" href="https://xiangsu100xiaoyi.coze.site/" target="_blank" rel="noreferrer">https://xiangsu100xiaoyi.coze.site/</a>
-            <a class="vibe-link-item" href="https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site/" target="_blank" rel="noreferrer">https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site/</a>
+            <a class="vibe-link-item" href="https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site" target="_blank" rel="noreferrer">https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site</a>
           </div>
         </div>
         <div class="vibe-link-card">
@@ -2704,6 +2748,24 @@
     <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
       <h2 data-anim="head" class="page-title" style="text-align:center">什么样的作品集可以打动他？</h2>
     </div>
+  </div>
+</section>
+
+<section id="slide-call-static" class="slide" data-layout="S08">
+  <div class="canvas-card" style="background-image:url('images/ai-deck-background-light-v2.png');background-size:cover;background-position:center;position:relative">
+    <img id="call-static-image" src="images/call_OVVlP789Mb7ULRnMI2BDpxyC.png" alt="AI 辅助用户调研流程示意图">
+  </div>
+</section>
+
+<section id="slide-call-static-2" class="slide" data-layout="S08">
+  <div class="canvas-card" style="background-image:url('images/ai-deck-background-light-v2.png');background-size:cover;background-position:center;position:relative">
+    <img id="call-static-image-2" src="images/call_UKdahFYBaQpMWD24lhj9bvBX.png" alt="AI 辅助用户调研流程补充示意图">
+  </div>
+</section>
+
+<section id="slide-call-static-3" class="slide" data-layout="S08">
+  <div class="canvas-card" style="background-image:url('images/ai-deck-background-light-v2.png');background-size:cover;background-position:center;position:relative">
+    <img id="call-static-image-3" src="images/call_BO.png" alt="AI 辅助页面总览示意图">
   </div>
 </section>
 
@@ -3775,6 +3837,14 @@ if(motion){
     if(slide.id==='slide-complex-business'){
       slide.querySelectorAll('.complex-item,.complex-decision-title').forEach(el=>el.classList.add('revealed'));
     }
+    if(slide.id==='slide-call-static-3'){
+      const img=slide.querySelector('#call-static-image-3');
+      if(img) img.style.transform='translateY(0)';
+    }
+    if(slide.id==='slide-call-static' || slide.id==='slide-final-scroll'){
+      const img=slide.querySelector(slide.id==='slide-call-static' ? '#call-static-image' : '#final-scroll-image');
+      if(img) img.style.transform='translateY(0)';
+    }
     if(slide.id==='slide-final-scroll'){
       const img=slide.querySelector('#final-scroll-image');
       if(img) img.style.transform='translateY(0)';
@@ -3838,6 +3908,16 @@ if(motion){
       (slide.__complexTimers || []).forEach(t=>clearTimeout(t));
       slide.__complexTimers = [];
       slide.querySelectorAll('.complex-item,.complex-decision-title').forEach(el=>el.classList.remove('revealed'));
+    }
+    if(slide.id==='slide-call-static'){
+      slide.__callStaticScrollY = 0;
+      const img=slide.querySelector('#call-static-image');
+      if(img) img.style.transform='translateY(0)';
+    }
+    if(slide.id==='slide-call-static-3'){
+      slide.__callStatic3ScrollY = 0;
+      const img=slide.querySelector('#call-static-image-3');
+      if(img) img.style.transform='translateY(0)';
     }
     if(slide.id==='slide-final-scroll'){
       slide.__finalScrollY = 0;
@@ -3910,6 +3990,30 @@ if(motion){
       slide.__complexTimers = staged.map((el, idx)=>setTimeout(()=>{
         el.classList.add('revealed');
       }, 760 + idx * 90));
+    }
+    if(slide.id==='slide-call-static'){
+      const viewport=slide.querySelector('.canvas-card');
+      const img=slide.querySelector('#call-static-image');
+      const syncTop=()=>{
+        slide.__callStaticScrollY = 0;
+        if(img) img.style.transform='translateY(0)';
+      };
+      if(img && viewport){
+        if(img.complete) requestAnimationFrame(()=>requestAnimationFrame(syncTop));
+        else img.addEventListener('load', syncTop, {once:true});
+      }
+    }
+    if(slide.id==='slide-call-static-3'){
+      const viewport=slide.querySelector('.canvas-card');
+      const img=slide.querySelector('#call-static-image-3');
+      const syncTop=()=>{
+        slide.__callStatic3ScrollY = 0;
+        if(img) img.style.transform='translateY(0)';
+      };
+      if(img && viewport){
+        if(img.complete) requestAnimationFrame(()=>requestAnimationFrame(syncTop));
+        else img.addEventListener('load', syncTop, {once:true});
+      }
     }
     if(slide.id==='slide-final-scroll'){
       const viewport=slide.querySelector('.canvas-card');
@@ -4049,6 +4153,40 @@ if(motion){
       const stage=slide.querySelector('.problem-board-stage');
       if(stage && !stage.classList.contains('scrolling')){
         stage.classList.add('scrolling');
+        return true;
+      }
+      return false;
+    }
+    if(slide.id==='slide-call-static'){
+      const viewport=slide.querySelector('.canvas-card');
+      const img=slide.querySelector('#call-static-image');
+      if(!viewport || !img) return false;
+      const renderedHeight = img.getBoundingClientRect().height;
+      const maxScroll=Math.max(0, renderedHeight - viewport.clientHeight);
+      if(maxScroll <= 1) return false;
+      const step=Math.max(1, viewport.clientHeight * 0.45);
+      const current=slide.__callStaticScrollY || 0;
+      const next=Math.min(maxScroll, current + step);
+      if(next > current + 0.5){
+        slide.__callStaticScrollY = next;
+        img.style.transform=`translateY(${-next}px)`;
+        return true;
+      }
+      return false;
+    }
+    if(slide.id==='slide-call-static-3'){
+      const viewport=slide.querySelector('.canvas-card');
+      const img=slide.querySelector('#call-static-image-3');
+      if(!viewport || !img) return false;
+      const renderedHeight = img.getBoundingClientRect().height;
+      const maxScroll=Math.max(0, renderedHeight - viewport.clientHeight);
+      if(maxScroll <= 1) return false;
+      const step=Math.max(1, viewport.clientHeight * 0.45);
+      const current=slide.__callStatic3ScrollY || 0;
+      const next=Math.min(maxScroll, current + step);
+      if(next > current + 0.5){
+        slide.__callStatic3ScrollY = next;
+        img.style.transform=`translateY(${-next}px)`;
         return true;
       }
       return false;
