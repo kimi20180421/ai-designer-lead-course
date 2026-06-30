@@ -1040,7 +1040,7 @@
   #slide-role .arc-note-br{left:calc(50% + 3.4vw);bottom:-4vh;text-align:left}
   #slide-role .arc-note-r{left:calc(50% + 3.4vw);bottom:-4vh;text-align:left}
   /* AI 对话演示页: 左侧对话线框 + 右侧手机截图 */
-  .chat-demo{display:flex;align-items:center;justify-content:center;gap:4vw;width:100%}
+  .chat-demo{display:flex;align-items:center;justify-content:center;gap:2.4vw;width:100%}
   .chat-box{
     flex:1;max-width:46vw;display:flex;flex-direction:column;gap:2.4vh;
     padding:3vh 2.2vw;border-radius:16px;
@@ -1404,6 +1404,47 @@
     color:var(--text-primary);
     text-align:center;
   }
+  .vibe-links-wrap{
+    width:min(86vw,1420px);
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:2vw;
+    margin-top:calc(4vh + 30px);
+  }
+  .vibe-link-card{
+    min-height:32vh;
+    display:flex;
+    flex-direction:column;
+    gap:2.4vh;
+    padding:3.6vh 2.2vw;
+    border-radius:20px;
+    border:1px solid rgba(79,107,255,.3);
+    background:rgba(79,107,255,.04);
+    box-shadow:0 20px 56px rgba(40,60,160,.08);
+  }
+  .vibe-link-heading{
+    font-family:var(--cover-font-title);
+    font-size:min(2.3vw,3.7vh);
+    font-weight:600;
+    line-height:1.2;
+    color:var(--text-primary);
+  }
+  .vibe-link-list{
+    display:flex;
+    flex-direction:column;
+    gap:1.6vh;
+  }
+  .vibe-link-item{
+    display:block;
+    font-family:var(--mono);
+    font-size:max(15px,1.02vw);
+    line-height:1.6;
+    color:var(--accent);
+    text-decoration:none;
+    word-break:break-all;
+    cursor:pointer;
+  }
+  .vibe-link-item:hover{text-decoration:underline}
   .divergence-gallery{
     width:100%;
     margin-top:4.2vh;
@@ -2316,6 +2357,7 @@
           <div class="chat-line chat-me"><span class="chat-role">我</span><span class="chat-msg">帮我做一个房产证上传页面。要求简洁、美观、操作方便。</span></div>
           <div class="chat-line chat-ai"><span class="chat-role">AI</span><span class="chat-msg">好的，已生成一版高保真"拍摄房产证"用户界面：包含完整取景框、拍摄规范提示、相册上传入口和快门按钮。证件采用示意封面，不含真实信息。</span></div>
         </div>
+        <img class="chat-shot" src="images/ig_0065a9b47ef9a313016a33619474248191b8f7a97df52f21a1.png" alt="AI 生成的拍摄房产证页面方案一">
         <img class="chat-shot" src="images/ig_0bcb5c4178eeedab016a1ec456efe48191983bc2e74b82d57b.png" alt="AI 生成的房产证上传页面">
       </div>
     </div>
@@ -2420,8 +2462,25 @@
 <section class="slide" data-layout="S08" data-animate="duo-mirror">
   <div class="canvas-card" style="background-image:url('images/ai-deck-background-light-v2.png');background-size:cover;background-position:center;position:relative">
     <div class="chapter-label" style="position:absolute;top:5vh;left:max(40px,2.5vw)">有了 AI，怎么帮我做设计？</div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:var(--title-top)">
       <h2 data-anim="head" class="page-title" style="text-align:center">AI 辅助- Vibe Coding Demo</h2>
+      <div data-anim="bottom" class="vibe-links-wrap">
+        <div class="vibe-link-card">
+          <div class="vibe-link-heading">coding作品集是什么</div>
+          <div class="vibe-link-list">
+            <a class="vibe-link-item" href="https://huang-jie.com/" target="_blank" rel="noreferrer">https://huang-jie.com/</a>
+            <a class="vibe-link-item" href="https://xiangsu100xiaoyi.coze.site/" target="_blank" rel="noreferrer">https://xiangsu100xiaoyi.coze.site/</a>
+            <a class="vibe-link-item" href="https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site/" target="_blank" rel="noreferrer">https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site/</a>
+          </div>
+        </div>
+        <div class="vibe-link-card">
+          <div class="vibe-link-heading">coding作品集不是什么</div>
+          <div class="vibe-link-list">
+            <a class="vibe-link-item" href="https://yhportfolio.framer.website" target="_blank" rel="noreferrer">https://yhportfolio.framer.website</a>
+            <a class="vibe-link-item" href="https://www.senya.design/ai/badminton.html" target="_blank" rel="noreferrer">https://www.senya.design/ai/badminton.html</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2979,6 +3038,14 @@ addEventListener('click',e=>{
   const slide=slides[idx];
   if(slide && window.__pipeAdvance) window.__pipeAdvance();
 },false);
+
+document.querySelectorAll('.vibe-links-wrap a').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(link.href, '_blank', 'noopener,noreferrer');
+  });
+});
 
 const initialSlideParam = new URLSearchParams(location.search).get('slide');
 const initialSlide = initialSlideParam ? Number(initialSlideParam) - 1 : 0;
