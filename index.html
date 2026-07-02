@@ -753,6 +753,19 @@
     box-shadow:none;
     border-radius:0;
   }
+  .canvas-card::after{
+    content:"";
+    position:absolute;
+    right:30px;
+    bottom:30px;
+    width:202px;
+    height:30px;
+    background:url('images/shuiyin.png') no-repeat center / contain;
+    z-index:999;
+    pointer-events:none;
+    opacity:.96;
+    filter:drop-shadow(0 2px 12px rgba(0,0,0,.22));
+  }
   .slide.dark .canvas-card{background:var(--ink);color:var(--paper)}
   .slide.accent .canvas-card{background:var(--accent);color:var(--accent-on)}
   .slide.grey .canvas-card{background:var(--grey-1);color:var(--ink)}
@@ -2510,23 +2523,6 @@
     <div class="chapter-label" style="position:absolute;top:5vh;left:max(40px,2.5vw)">有了 AI，怎么帮我做设计？</div>
     <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:var(--title-top)">
       <h2 data-anim="head" class="page-title" style="text-align:center">AI 辅助- Vibe Coding Demo</h2>
-      <div data-anim="bottom" class="vibe-links-wrap">
-        <div class="vibe-link-card">
-          <div class="vibe-link-heading">Coding 是什么</div>
-          <div class="vibe-link-list">
-            <a class="vibe-link-item" href="https://huang-jie.com/" target="_blank" rel="noreferrer">https://huang-jie.com/</a>
-            <a class="vibe-link-item" href="https://xiangsu100xiaoyi.coze.site/" target="_blank" rel="noreferrer">https://xiangsu100xiaoyi.coze.site/</a>
-            <a class="vibe-link-item" href="https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site" target="_blank" rel="noreferrer">https://b90aa0c7-10d1-4b8c-81ba-b2ef4a84acc9-readonly-5000.dev.coze.site</a>
-          </div>
-        </div>
-        <div class="vibe-link-card">
-          <div class="vibe-link-heading">Coding 不是什么</div>
-          <div class="vibe-link-list">
-            <a class="vibe-link-item" href="https://yhportfolio.framer.website" target="_blank" rel="noreferrer">https://yhportfolio.framer.website</a>
-            <a class="vibe-link-item" href="https://www.senya.design/ai/badminton.html" target="_blank" rel="noreferrer">https://www.senya.design/ai/badminton.html</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
