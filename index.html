@@ -1042,7 +1042,7 @@
   /* AI 对话演示页: 左侧对话线框 + 右侧手机截图 */
   .chat-demo{display:flex;align-items:center;justify-content:center;gap:2.4vw;width:100%}
   .chat-box{
-    flex:1;max-width:46vw;display:flex;flex-direction:column;gap:2.4vh;
+    flex:0 0 min(34vw,560px);max-width:min(34vw,560px);display:flex;flex-direction:column;gap:2.4vh;
     padding:3vh 2.2vw;border-radius:16px;
     border:1px solid rgba(79,107,255,.4);background:rgba(79,107,255,.05)
   }
@@ -2546,7 +2546,7 @@
           <div class="flow-summary-step">验证方案</div>
         </div>
         <div data-anim="bottom" class="flow-summary-text">
-          在<span class="grad-text">AI</span> 让信息获取更快、方案更多、验证更早
+          <span class="grad-text">AI</span> 让信息获取更快、方案更多、验证更早
         </div>
       </div>
     </div>
