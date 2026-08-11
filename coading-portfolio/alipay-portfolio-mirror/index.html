@@ -1,0 +1,2313 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <!--
+    Assumptions:
+    - Content and section order follow Image 1.
+    - Visual language follows Image 2: international dark AI SaaS style, soft orbital lines,
+      cool glass panels, precise spacing, and in-page anchor navigation.
+    - Image 1 collage background blocks are intentionally ignored.
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>斐波那契 | 支付宝体验设计作品集（镜像版）</title>
+  <link href="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/assets/fonts/fonts.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070707;
+      --bg-2: #101010;
+      --panel: rgba(28, 28, 28, .74);
+      --panel-strong: rgba(36, 36, 36, .88);
+      --line: rgba(255, 255, 255, .12);
+      --line-strong: rgba(255, 255, 255, .24);
+      --text: #f1f1ee;
+      --muted: #b9b9b4;
+      --soft: #92928d;
+      --violet: #8d8980;
+      --violet-2: #c7c3ba;
+      --cyan: #d0ccc2;
+      --green: #b7b2a8;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .34);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #070707;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.024) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: .52;
+      mask-image: linear-gradient(to bottom, transparent 0 86vh, rgba(0,0,0,.72) 120vh, rgba(0,0,0,.85));
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    @media (pointer: fine) {
+      body.has-custom-cursor .practice-track,
+      body.has-custom-cursor .practice-card {
+        cursor: none;
+      }
+    }
+
+    .site-shell {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.36) 0 1px, transparent 1.6px),
+        radial-gradient(circle, rgba(190,190,184,.22) 0 1px, transparent 1.8px);
+      background-size: 160px 170px, 260px 220px;
+      background-position: 12px 30px, 80px 120px;
+      opacity: .16;
+    }
+
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      padding: 14px 22px 0;
+      pointer-events: none;
+    }
+
+    .nav {
+      width: min(var(--max), 100%);
+      height: 52px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 6px 8px 6px 12px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 28px;
+      background: rgba(0, 0, 0, .38);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+      backdrop-filter: none;
+      pointer-events: auto;
+    }
+
+    .hero .nav {
+      background: rgba(0, 0, 0, .38);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 146px;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, .12));
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 3px;
+      border-radius: 21px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-links a {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 12px;
+      border-radius: 16px;
+      color: #bebeb8;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .22s ease, background .22s ease, box-shadow .22s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.is-active {
+      color: #fff;
+      background: rgba(83, 105, 192, .14);
+      box-shadow: inset 0 0 0 1px rgba(151, 169, 236, .22);
+    }
+
+    .nav-action,
+    .primary-btn,
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(145, 164, 232, .34);
+      color: white;
+      background: linear-gradient(135deg, rgba(91, 113, 202, .24), rgba(213, 216, 226, .12));
+      box-shadow: 0 12px 34px rgba(35, 54, 122, .2);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      white-space: nowrap;
+    }
+
+    .nav-action:hover,
+    .primary-btn:hover,
+    .ghost-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(167, 185, 246, .5);
+      box-shadow: 0 18px 44px rgba(43, 66, 151, .28);
+    }
+
+    .nav-action .icon {
+      transform: translate(-1px, 1px);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    main { position: relative; }
+
+    section {
+      position: relative;
+      scroll-margin-top: 92px;
+    }
+
+    .hero {
+      min-height: 100svh;
+      padding: 156px 22px 92px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 0;
+      opacity: 1;
+      filter: saturate(1.04) contrast(1.08) brightness(1.02);
+      background: #000;
+    }
+
+    .hero-scrim,
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-scrim {
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.16) 48%, rgba(0,0,0,.56) 86%, #070707 100%),
+        rgba(0,0,0,.08);
+    }
+
+    .hero-vignette {
+      background:
+        radial-gradient(ellipse at 50% 18%, transparent 0 36%, rgba(0,0,0,.05) 62%, rgba(0,0,0,.52) 100%),
+        linear-gradient(90deg, rgba(0,0,0,.64), transparent 24%, transparent 76%, rgba(0,0,0,.64));
+      opacity: .58;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      text-align: center;
+      transform: translateY(54px);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 auto 24px;
+      padding: 0 14px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 999px;
+      background: rgba(20, 20, 20, .72);
+      color: #d8d6cf;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 16px 40px rgba(0,0,0,.2);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .spark {
+      width: 14px;
+      height: 14px;
+      color: var(--violet-2);
+      filter: drop-shadow(0 0 8px rgba(220, 216, 206, .42));
+    }
+
+    h1 {
+      max-width: none;
+      margin: 0 auto;
+      font-family: inherit;
+      font-size: clamp(36px, 4.6vw, 68px);
+      line-height: 1.08;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .typewriter-text {
+      white-space: nowrap;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      margin-left: .16em;
+      color: currentColor;
+      animation: typeCursorBlink .82s step-end infinite;
+    }
+
+    @keyframes typeCursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .name {
+      display: inline;
+      margin-bottom: 0;
+      color: #f1f1ee;
+      font-size: 1em;
+      font-weight: 900;
+      text-shadow: none;
+    }
+
+    .name::after { content: " "; }
+
+    .hero-copy {
+      max-width: 1120px;
+      margin: 24px auto 0;
+      color: #d2d1cb;
+      font-size: clamp(16px, 1.5vw, 18px);
+      line-height: 1.9;
+      text-wrap: pretty;
+    }
+
+    .hero-copy span {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-copy .desktop-break { display: none; }
+
+    .skill-pills {
+      margin: 32px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .skill-pills span {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.035);
+      color: #d5d3ca;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+
+    .skill-pills span:hover {
+      transform: translateY(-2px);
+      border-color: rgba(151, 169, 236, .32);
+      background: rgba(83, 105, 192, .1);
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      height: 42px;
+      min-height: 42px;
+      box-sizing: border-box;
+    }
+
+    .hero-actions .primary-btn {
+      background: linear-gradient(135deg, rgba(105, 128, 216, .9), rgba(74, 92, 172, .78));
+      border-color: rgba(175, 190, 248, .58);
+      box-shadow: 0 16px 42px rgba(50, 72, 164, .3);
+    }
+
+    .hero-actions .ghost-btn {
+      color: #e2e1dc;
+      background: rgba(16, 16, 18, .58);
+      border-color: rgba(255, 255, 255, .18);
+    }
+
+    .hero-widget {
+      width: min(380px, calc(100vw - 44px));
+      margin: 44px auto 0;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: linear-gradient(180deg, rgba(35, 35, 35, .84), rgba(18, 18, 18, .7));
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+
+    .chat-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 8px 12px;
+      color: #dedbd2;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bubble {
+      width: fit-content;
+      max-width: 86%;
+      margin: 7px 0;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.075);
+      color: #c9c8c1;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .bubble.accent {
+      margin-left: auto;
+      color: #fff;
+      background: linear-gradient(135deg, #d8d4c9, #8b887f);
+    }
+
+    .section-header {
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      margin: 14px 0 0;
+      font-size: clamp(36px, 4.8vw, 62px);
+      line-height: 1.08;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+
+    .section-header p {
+      max-width: 620px;
+      margin: 18px auto 0;
+      color: #bdbdb7;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .practice .section-header p {
+      max-width: none;
+      font-size: clamp(10px, 1.35vw, 16px);
+      white-space: nowrap;
+    }
+
+    .work {
+      padding: 52px 22px 92px;
+      background: radial-gradient(ellipse at 50% 20%, rgba(73, 91, 160, .07), transparent 48%);
+    }
+
+    .statement {
+      width: min(880px, 100%);
+      min-height: 72px;
+      margin: 0 auto 44px;
+      display: grid;
+      place-items: center;
+      padding: 16px 28px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 999px;
+      background: rgba(10, 10, 10, .58);
+      color: #f0eee8;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+      font-size: clamp(22px, 2.6vw, 32px);
+      font-weight: 700;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .case-grid {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .case-card,
+    .practice-card,
+    .about-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(30, 30, 30, .78), rgba(13, 13, 13, .88));
+      box-shadow: 0 18px 46px rgba(0,0,0,.22);
+      transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease;
+    }
+
+    .case-card:hover,
+    .about-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(145, 164, 232, .32);
+      box-shadow: 0 26px 70px rgba(34, 51, 118, .18), 0 20px 60px rgba(0, 0, 0, .32);
+      background: linear-gradient(180deg, rgba(34, 36, 44, .92), rgba(16, 17, 21, .94));
+    }
+
+    .case-card {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto auto;
+      row-gap: 18px;
+      padding: 22px;
+      border-radius: 18px;
+      cursor: pointer;
+    }
+
+    .case-card:focus-visible,
+    .practice-card:focus-visible {
+      outline: 2px solid rgba(167, 185, 246, .76);
+      outline-offset: 5px;
+    }
+
+    .case-card > div:first-child {
+      min-height: 0;
+    }
+
+    .case-no {
+      width: fit-content;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .055);
+      color: #c9c5bc;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .case-card h3 {
+      margin: 22px 0 10px;
+      font-size: 20px;
+      line-height: 1.38;
+      font-weight: 800;
+      text-wrap: pretty;
+    }
+
+    .case-card p {
+      margin: 0;
+      color: #c0bfb8;
+      font-size: 16px;
+      line-height: 1.7;
+      text-wrap: pretty;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .case-tags {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .case-tags span {
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 10px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 999px;
+      color: #c3c2bc;
+      background: rgba(255,255,255,.035);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 650;
+    }
+
+    .case-result {
+      margin-top: 14px;
+      color: #d9d8d2;
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .case-visual {
+      position: relative;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      margin-top: 0;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at 72% 25%, rgba(210, 206, 196, .18), transparent 48px),
+        linear-gradient(135deg, rgba(98, 96, 90, .26), rgba(255,255,255,.035));
+      overflow: hidden;
+    }
+
+    .case-visual::after {
+      content: "建议配图尺寸 720 x 360";
+      position: absolute;
+      left: 16px;
+      bottom: 12px;
+      color: rgba(224, 221, 211, .42);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .case-visual:has(.case-cover)::after {
+      content: none;
+    }
+
+    .case-visual:has(.case-cover) {
+      aspect-ratio: auto;
+      border: 0;
+      background: none;
+    }
+
+    .case-cover {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: inherit;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1), filter .28s ease;
+      filter: brightness(.94) contrast(1.02);
+    }
+
+    .case-card:hover .case-cover {
+      transform: scale(1.035);
+      filter: brightness(1) contrast(1.04);
+    }
+
+    .visual-bars,
+    .visual-flow,
+    .visual-interview,
+    .visual-door {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .visual-bars::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      background:
+        linear-gradient(90deg, rgba(230,228,220,.72) 0 24%, transparent 24% 32%, rgba(159,154,143,.76) 32% 62%, transparent 62% 70%, rgba(197,193,184,.64) 70%),
+        linear-gradient(90deg, rgba(255,255,255,.35), rgba(255,255,255,.08));
+      background-size: 100% 14px, 100% 14px;
+      background-repeat: no-repeat;
+      background-position: 0 0, 0 42px;
+      filter: blur(.1px);
+    }
+
+    .visual-flow::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(230, 226, 216, .24);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 24% 36%, #b5b0a5 0 7px, transparent 8px),
+        radial-gradient(circle at 72% 62%, #d3d0c6 0 7px, transparent 8px),
+        linear-gradient(135deg, transparent 46%, rgba(255,255,255,.3) 47% 48%, transparent 49%);
+    }
+
+    .visual-interview::before,
+    .visual-door::before {
+      content: "";
+      position: absolute;
+      inset: 28px 26px;
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.02)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 2px, transparent 2px 20px);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    .visual-door::after {
+      content: "";
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      right: 28px;
+      top: 30px;
+      background: radial-gradient(circle at 34% 32%, rgba(255,255,255,.86), rgba(168,164,154,.62) 45%, rgba(38,38,36,.2) 74%);
+      box-shadow: 0 0 28px rgba(198, 193, 181, .2);
+    }
+
+    .case-footer {
+      min-height: 52px;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .case-title {
+      color: #efede6;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .case-link {
+      flex: 0 0 auto;
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      border: 1px solid rgba(145, 164, 232, .25);
+      border-radius: 999px;
+      color: #c8d0f3;
+      background: rgba(83, 105, 192, .09);
+      font-size: 14px;
+      font-weight: 700;
+      opacity: .86;
+      transition: opacity .22s ease, transform .22s ease, color .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .case-card:hover .case-link {
+      color: #dce3ff;
+      opacity: 1;
+      transform: translateY(-2px);
+      border-color: rgba(167, 185, 246, .46);
+      background: rgba(83, 105, 192, .16);
+    }
+
+    .practice {
+      padding: 20px 0 86px;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 48%, rgba(73, 91, 160, .075), transparent 44%);
+    }
+
+    .practice-track {
+      width: 100%;
+      height: 430px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y;
+      overscroll-behavior: contain;
+      outline: none;
+    }
+
+    .practice-track::before,
+    .practice-track::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 20;
+      width: clamp(28px, 8vw, 150px);
+      pointer-events: none;
+    }
+
+    .practice-track::before {
+      left: 0;
+      background: linear-gradient(90deg, #070707, transparent);
+    }
+
+    .practice-track::after {
+      right: 0;
+      background: linear-gradient(-90deg, #070707, transparent);
+    }
+
+    .practice-ring {
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.2vw, 20px);
+      width: max-content;
+      padding: 28px 0;
+      will-change: transform;
+    }
+
+    .practice-card {
+      position: relative;
+      flex: 0 0 clamp(230px, 21vw, 340px);
+      width: clamp(230px, 21vw, 340px);
+      aspect-ratio: 1;
+      padding: 0;
+      display: block;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      cursor: var(--card-cursor, pointer);
+      transform-origin: center center;
+      transition: transform .24s cubic-bezier(.22, 1, .36, 1), box-shadow .24s ease, border-color .24s ease;
+      background: #1a1a1a;
+      box-shadow: 0 26px 70px rgba(0,0,0,.34);
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      touch-action: manipulation;
+    }
+
+    .practice-card:hover {
+      z-index: 5;
+      transform: translateY(-7px) scale(1.025);
+      border-color: rgba(255,255,255,.46);
+      box-shadow: 0 28px 72px rgba(34, 51, 118, .18), 0 22px 58px rgba(0, 0, 0, .42);
+      background: #1c1d20;
+    }
+
+    .practice-track.has-hover .practice-card:not(.is-hovered) {
+      filter: none;
+    }
+
+    .practice-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: inherit;
+      object-fit: cover;
+      background: #1a1a1a;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+      transition: transform .28s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .practice-card:hover .practice-image {
+      transform: scale(1.018);
+    }
+
+    .practice-card-meta {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 54px 18px 16px;
+      color: #fff;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+      pointer-events: none;
+    }
+
+    .practice-card-meta strong {
+      font-size: 16px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .practice-card-meta span {
+      flex: 0 0 auto;
+      color: rgba(255,255,255,.74);
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+
+    .practice-types {
+      margin: 2px auto 0;
+      color: #aeadab;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .practice-fade {
+      display: none;
+    }
+
+    .user-cursor-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 140ms ease;
+    }
+
+    .user-cursor-layer.is-visible { opacity: 1; }
+
+    body.modal-open .user-cursor-layer {
+      opacity: 0;
+    }
+
+    .user-cursor-arrow,
+    .user-cursor-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      will-change: transform, opacity;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .user-cursor-label {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #fff;
+      color: #000;
+      font-size: 13px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: .01em;
+      box-shadow: 0 4px 12px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+      transform-origin: 0% 50%;
+    }
+
+    .user-cursor-arrow {
+      width: 31px;
+      height: 31px;
+      transform-origin: 0% 0%;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .resume-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 340;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(4, 4, 5, .82);
+      backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .22s ease, visibility .22s ease;
+    }
+
+    .resume-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .resume-modal-panel {
+      width: min(1120px, 100%);
+      height: min(900px, calc(100vh - 48px));
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      overflow: hidden;
+      min-height: 0;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 22px;
+      background: #111214;
+      box-shadow: 0 32px 100px rgba(0,0,0,.58);
+      transform: translateY(14px) scale(.985);
+      transition: transform .28s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .resume-modal.is-open .resume-modal-panel {
+      transform: translateY(0) scale(1);
+    }
+
+    .resume-modal-toolbar {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .resume-modal-back,
+    .resume-modal-download {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      color: #f5f5f2;
+      background: rgba(255,255,255,.055);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .resume-modal-back:hover,
+    .resume-modal-download:hover {
+      transform: translateY(-1px);
+      border-color: rgba(167,185,246,.5);
+      background: rgba(83,105,192,.16);
+    }
+
+    .resume-modal-download {
+      background: linear-gradient(135deg, #6579cf, #4659a8);
+      border-color: rgba(167,185,246,.52);
+    }
+
+    .resume-modal-document {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      overflow: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-gutter: stable;
+      background: #292a2c;
+    }
+
+    .resume-modal-preview-image {
+      width: min(100%, 1120px);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    .project-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: block;
+      padding: 72px 24px 96px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background: rgba(0, 0, 0, .88);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .36s ease, visibility .36s ease;
+    }
+
+    .project-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .project-modal-panel {
+      width: min(1120px, calc(100vw - 48px));
+      margin: 0 auto;
+      position: relative;
+      display: block;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      transform: translateY(28px) scale(.975);
+      transition: transform .48s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .project-modal.is-open .project-modal-panel {
+      transform: translateY(0) scale(1);
+    }
+
+    .project-modal-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 2;
+      height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .project-modal-kicker {
+      color: #8f918f;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      display: none;
+    }
+
+    .project-modal-title {
+      margin: 10px 0 10px;
+      color: #f3f3ef;
+      font-size: clamp(30px, 3.2vw, 44px);
+      line-height: 1;
+      font-weight: 800;
+      display: none;
+    }
+
+    .project-modal-summary {
+      min-height: 3.4em;
+      max-width: 980px;
+      margin: 0;
+      color: #989a97;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      font-size: 14px;
+      line-height: 1.7;
+      display: none;
+    }
+
+    .project-modal-close {
+      position: fixed;
+      top: 72px;
+      left: var(--modal-close-left, calc(50vw + 584px));
+      right: auto;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 50%;
+      color: #e7e7e2;
+      background: rgba(18, 18, 18, .92);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .4);
+      cursor: pointer;
+      z-index: 4;
+      transition: color .22s ease, background .22s ease, transform .22s ease;
+    }
+
+    .project-modal-close:hover {
+      color: #fff;
+      background: rgba(105, 128, 216, .14);
+      transform: rotate(4deg);
+    }
+
+    .project-modal-close svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .project-modal-stage {
+      min-height: 0;
+      overflow: visible;
+      display: block;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .project-modal-media {
+      width: 100%;
+      min-height: 0;
+      display: grid;
+      gap: 18px;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .project-modal-media img,
+    .project-modal-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background: #141515;
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .42);
+    }
+
+    .project-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 540px;
+      width: 100%;
+      color: rgba(255, 255, 255, .28);
+      font-size: 14px;
+      font-weight: 600;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+        #141515;
+      background-size: 64px 64px;
+    }
+
+    .project-modal-footer {
+      display: none;
+    }
+
+    .project-modal-nav {
+      display: none;
+      position: fixed;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      line-height: 0;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 50%;
+      color: #efefeb;
+      background: rgba(22, 22, 22, .82);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .34);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .project-modal-nav:hover:not(:disabled) {
+      transform: translateY(-50%) scale(1.04);
+      border-color: rgba(167, 185, 246, .46);
+      background: rgba(83, 105, 192, .14);
+    }
+
+    .project-modal-nav:disabled {
+      opacity: .28;
+      cursor: default;
+    }
+
+    .project-modal-nav[hidden] {
+      display: none;
+    }
+
+    .project-modal-prev {
+      left: 32px;
+      transform: translateY(-50%);
+    }
+
+    .project-modal-next {
+      right: 32px;
+      transform: translateY(-50%);
+    }
+
+    .project-modal-count {
+      display: none;
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      min-width: 72px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: #d7d7d1;
+      background: rgba(18, 18, 18, .76);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 700;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .about {
+      padding: 66px 22px 86px;
+      background:
+        radial-gradient(circle at 50% 44%, rgba(73, 91, 160, .07), transparent 440px),
+        linear-gradient(180deg, rgba(255,255,255,0), rgba(14, 14, 14, .66));
+    }
+
+    .practice .section-header h2,
+    .about .section-header h2 {
+      font-size: clamp(34px, 4.1vw, 54px);
+    }
+
+    .about-intro {
+      max-width: 780px;
+      margin: -12px auto 34px;
+      color: #c1c0ba;
+      font-size: 16px;
+      line-height: 1.85;
+      text-align: center;
+      text-wrap: pretty;
+    }
+
+    .about-grid {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .about-card {
+      min-height: 230px;
+      padding: 22px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #ece9df;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 0 20px rgba(208,202,190,.12);
+    }
+
+    .about-card h3 {
+      margin: 20px 0 10px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .about-card p {
+      margin: 0;
+      color: #c0beb7;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .about-card b {
+      color: #d0cbc0;
+      font-size: 14px;
+    }
+
+    .contact {
+      padding: 76px 22px 82px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      max-width: 1120px;
+      margin: 0 auto;
+      font-size: clamp(26px, 2.6vw, 38px);
+      line-height: 1.34;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    .contact-subtitle {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: #b8b7b1;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .ghost-btn {
+      background: rgba(83, 105, 192, .06);
+      box-shadow: none;
+    }
+
+    .contact-panel {
+      width: min(980px, 100%);
+      margin: 32px auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: nowrap;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .contact-panel span,
+    .contact-panel a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 999px;
+      color: #aaa9a3;
+      background: rgba(255,255,255,.035);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .contact-panel a {
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .contact-panel a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(167, 185, 246, .46);
+      background: rgba(83, 105, 192, .14);
+    }
+
+    .contact-panel .contact-resume {
+      color: #fff;
+      border-color: rgba(167, 185, 246, .52);
+      background: linear-gradient(135deg, #6579cf, #4659a8);
+      box-shadow: 0 12px 28px rgba(49, 66, 139, .25), inset 0 1px 0 rgba(255,255,255,.24);
+    }
+
+    .contact-panel .contact-resume:hover {
+      background: linear-gradient(135deg, #7186dc, #5165b7);
+    }
+
+    .site-shell > footer {
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto 24px;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 0 24px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      background: rgba(0,0,0,.22);
+      color: #8f8d86;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (min-width: 761px) {
+      .hero-copy .desktop-break { display: block; }
+    }
+
+    @media (max-width: 960px) {
+      .nav {
+        height: auto;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .brand { min-width: auto; }
+      .nav-links {
+        order: 3;
+        width: 100%;
+        margin-inline: auto;
+        overflow-x: auto;
+        justify-content: center;
+        scrollbar-width: none;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { flex: 0 0 auto; }
+
+      .hero { min-height: 100svh; padding-top: 138px; }
+      .case-grid, .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .practice-track { width: min(900px, calc(100% - 44px)); height: 450px; }
+    }
+
+    /* 部分手机浏览器使用约 980px 的桌面视口；通过竖屏比例限制首屏高度。 */
+    @media (orientation: portrait) and (max-width: 1100px) {
+      .hero {
+        min-height: min(86svh, 760px);
+        padding-top: 112px;
+        padding-bottom: 64px;
+      }
+
+      .hero-inner {
+        transform: translateY(12px);
+      }
+
+      .hero-video {
+        object-position: center 14%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-wrap { padding: 10px 12px 0; }
+      .nav { padding: 9px; }
+      .brand strong { font-size: 13px; }
+      .nav-action { width: 38px; padding: 0; font-size: 0; }
+      .hero { min-height: min(88svh, 720px); padding: 116px 18px 58px; }
+      h1 { font-size: 22px; }
+      .hero-copy { max-width: 100%; font-size: 16px; line-height: 1.8; }
+      .hero-copy span { white-space: normal; }
+      .hero-inner { transform: translateY(8px); }
+      .hero-actions { margin-top: 24px; }
+      .hero-actions a { min-width: 142px; }
+      .statement { border-radius: 999px; font-size: 22px; }
+      .case-grid, .about-grid { grid-template-columns: 1fr; }
+      .practice-track { width: 100%; height: 360px; }
+      .work, .about, .contact { padding-left: 16px; padding-right: 16px; }
+      .section-header { width: 100%; }
+      .practice .section-header p {
+        width: 125%;
+        margin-left: -12.5%;
+        font-size: 10px;
+        transform: scale(.78);
+        transform-origin: center top;
+      }
+      .case-card { min-height: 0; }
+      .case-card { row-gap: 16px; }
+      .case-card > div:first-child { min-height: 0; margin-bottom: 0; }
+      .about-intro { margin-top: -8px; font-size: 16px; text-align: left; }
+      .practice-types { width: calc(100% - 32px); }
+      .contact-panel { justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; }
+      .contact-panel span, .contact-panel a { flex: 0 0 auto; }
+      .project-modal { padding: 58px 12px 72px; }
+      .project-modal-panel { width: 100%; overflow: visible; border-radius: 0; }
+      .project-modal-header { padding: 0; }
+      .project-modal-title { font-size: 32px; }
+      .project-modal-summary { min-height: 3.3em; font-size: 14px; line-height: 1.65; }
+      .project-modal-close { top: 12px; right: 12px; width: 36px; height: 36px; transform: none; }
+      .project-modal-close svg { width: 17px; height: 17px; }
+      .project-modal-close:hover { transform: rotate(4deg); }
+      .project-modal-stage { padding: 0; border-radius: 0; }
+      .project-modal-media { width: 100%; gap: 12px; border-radius: 0; }
+      .project-placeholder { min-height: 320px; border-radius: 0; }
+      .project-modal-footer { display: none; }
+      .project-modal-nav { display: none; width: 40px; height: 40px; }
+      .project-modal-prev { left: 16px; }
+      .project-modal-next { right: 16px; }
+      .project-modal-count { display: none; bottom: 16px; }
+      .resume-modal { padding: 0; }
+      .resume-modal-panel { height: 100dvh; max-height: 100dvh; border: 0; border-radius: 0; }
+      .resume-modal-toolbar { min-height: 62px; padding: 10px 12px; }
+      .resume-modal-back, .resume-modal-download { padding: 0 13px; font-size: 13px; }
+      .site-shell > footer { width: calc(100% - 32px); flex-direction: column; justify-content: center; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="stars" aria-hidden="true"></div>
+
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="主导航">
+        <a class="brand" href="#home" aria-label="回到首页">
+          <img class="brand-mark" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/nanxiaofei-logo.png" alt="斐波那契标志">
+          <span>
+            <strong>斐波那契</strong>
+            <span>Senior UI / UX Designer</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="#home" class="is-active">首页</a>
+          <a href="#work">重点项目</a>
+          <a href="#practice">更多项目</a>
+          <a href="#about">关于我</a>
+        </div>
+        <a class="nav-action" href="#contact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          联系我
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <video class="hero-video" aria-hidden="true" autoplay muted loop playsinline preload="metadata">
+          <source src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/assets/media/hero-background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="eyebrow">
+            <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/></svg>
+            Senior UI/UX Designer
+          </div>
+          <h1 class="typewriter-title" data-typewriter-text="斐波那契 支付宝体验设计作品集"><span class="typewriter-text"></span><span class="typewriter-cursor">_</span></h1>
+          <p class="hero-copy"><span>12年互联网产品设计经验，长期聚焦支付、生活服务与平台型产品体验</span><span>擅长在复杂链路、多角色协同与高频任务中，建立清晰、可信、可落地的服务体验方案</span></p>
+          <div class="skill-pills" aria-label="能力标签">
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>支付产品体验</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v8"/><path d="M18.4 5.6 12 12l-6.4-6.4"/><path d="M4 22h16"/></svg>AI服务设计</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-8 0v2"/><circle cx="12" cy="7" r="4"/></svg>核心 UI/UX</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>用户研究验证</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-8"/><path d="M14 7h7v7"/></svg>设计系统建设</span>
+          </div>
+          <div class="hero-actions" aria-label="首屏操作">
+            <a class="primary-btn" href="#work">查看重点项目</a>
+            <a class="ghost-btn" href="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/nanxiaofei-resume-preview.png" data-resume-preview>下载文字简历</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="work" id="work">
+        <div class="section-header">
+          <div class="eyebrow"><svg class="spark" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/></svg>Selected Work</div>
+          <h2>重点项目</h2>
+          <p>围绕支付、办事、生活服务与 AI 服务链路，持续优化服务发现、任务完成与信任体验</p>
+        </div>
+        <div class="statement">让用户更高效地发现服务、完成支付、获得帮助并形成持续信任</div>
+        <div class="case-grid">
+          <article class="case-card" data-project="case-03" role="button" tabindex="0" aria-label="查看AI办事助手项目">
+            <div>
+              <span class="case-no">Case 01</span>
+              <h3>从被动找入口，到主动获得服务</h3>
+              <p>通过 AI 办事助手前置理解用户诉求，帮助用户更快匹配服务与完成关键流程</p>
+              <div class="case-tags"><span>C端产品</span><span>AI 服务设计</span><span>支付宝场景</span></div>
+              <div class="case-result">覆盖高频办事链路用户 100 万+</div>
+            </div>
+            <div>
+              <div class="case-visual"><img class="case-cover" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/封面图.png" alt="AI办事助手项目封面" loading="lazy"></div>
+              <div class="case-footer"><div class="case-title">AI 办事助手</div><div class="case-link">查看项目 →</div></div>
+            </div>
+          </article>
+          <article class="case-card" data-project="case-02" role="button" tabindex="0" aria-label="查看AI生活决策助手项目">
+            <div>
+              <span class="case-no">Case 02</span>
+              <h3>从复杂决策，到获得持续陪伴</h3>
+              <p>将 AI 能力嵌入理财、缴费与生活决策关键节点，降低理解成本与操作成本</p>
+              <div class="case-tags"><span>C端产品</span><span>AI 决策体验</span><span>支付宝场景</span></div>
+              <div class="case-result">累计触达生活服务用户 20 万+</div>
+            </div>
+            <div>
+              <div class="case-visual"><img class="case-cover" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/封面图.png" alt="AI生活决策助手项目封面" loading="lazy"></div>
+              <div class="case-footer"><div class="case-title">AI 生活决策助手</div><div class="case-link">查看项目 →</div></div>
+            </div>
+          </article>
+          <article class="case-card" data-project="case-01" role="button" tabindex="0" aria-label="查看首页服务发现改版项目">
+            <div>
+              <span class="case-no">Case 03</span>
+              <h3>从信息堆积，到更快找到服务</h3>
+              <p>重构支付宝首页频道与服务发现秩序，提升服务查找效率与频道点击率</p>
+              <div class="case-tags"><span>C端产品</span><span>首页改版</span><span>支付宝场景</span></div>
+              <div class="case-result">频道点击率提升 0.3pp</div>
+            </div>
+            <div>
+              <div class="case-visual"><img class="case-cover" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/封面图.png" alt="首页服务发现改版项目封面" loading="lazy"></div>
+              <div class="case-footer"><div class="case-title">首页服务发现改版</div><div class="case-link">查看项目 →</div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="practice" id="practice">
+        <div class="section-header">
+          <div class="eyebrow"><svg class="spark" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/></svg>Design Practice</div>
+          <h2>更多项目实践</h2>
+          <p>覆盖生活服务、内容创作、节日运营、设计系统及轻量应用，展示支付宝场景下的多维设计能力</p>
+        </div>
+        <div class="practice-track" aria-label="更多设计实践轮播">
+          <div class="practice-ring">
+          <button class="practice-card" type="button" data-project="practice-01" style="--i:0" aria-haspopup="dialog" aria-label="查看支付宝新手成长专区项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/英才新手村 App/封面图.png" alt="支付宝新手成长专区项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-02" style="--i:1" aria-haspopup="dialog" aria-label="查看商家内容生成助手项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/混剪智能体/封面图.png" alt="商家内容生成助手项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-03" style="--i:2" aria-haspopup="dialog" aria-label="查看支付宝品牌表情项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/赶集表情包/封面图.png" alt="支付宝品牌表情项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-04" style="--i:3" aria-haspopup="dialog" aria-label="查看支付宝节日主题换肤项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/赶集节日换肤/封面图.png" alt="支付宝节日主题换肤项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-05" style="--i:4" aria-haspopup="dialog" aria-label="查看支付宝设计系统建设项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/赶集组件库建设/封面图.png" alt="支付宝设计系统建设项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-06" style="--i:5" aria-haspopup="dialog" aria-label="查看支付宝运营活动支持项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/运营支持/封面图.png" alt="支付宝运营活动支持项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-07" style="--i:6" aria-haspopup="dialog" aria-label="查看AI辅助服务设计项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/AI辅助虚拟项目/封面图.png" alt="AI辅助服务设计项目封面" loading="lazy"></button>
+          <button class="practice-card" type="button" data-project="practice-08" style="--i:7" aria-haspopup="dialog" aria-label="查看支付宝轻量小程序增长项目"><img class="practice-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/零工小程序C&B/封面图.png" alt="支付宝轻量小程序增长项目封面" loading="lazy"></button>
+          </div>
+          <div class="practice-fade" aria-hidden="true"></div>
+        </div>
+        <p class="practice-types">支付产品设计｜生活服务｜App 与小程序｜运营视觉｜设计系统</p>
+      </section>
+
+      <section class="about" id="about">
+        <div class="section-header">
+          <div class="eyebrow"><svg class="spark" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/></svg>About Me</div>
+          <h2>关于我</h2>
+        </div>
+        <p class="about-intro">我是一名长期专注复杂产品体验的 UI/UX 设计师<br>相比概念包装，我更关注支付与生活服务场景中，问题是否真实、方案是否清晰，以及设计能否在复杂业务环境中真正落地</p>
+        <div class="about-grid">
+          <article class="about-card">
+            <div>
+              <div class="about-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></div>
+              <h3>12年设计经验</h3>
+              <p>长期服务大型平台型业务，覆盖支付、生活服务、AI 体验及多端产品</p>
+            </div>
+            <b>Experience</b>
+          </article>
+          <article class="about-card">
+            <div>
+              <div class="about-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/><path d="M12 8v8M8 12h8"/></svg></div>
+              <h3>复杂业务设计</h3>
+              <p>在商业目标、平台规则、用户信任与服务效率之间，建立清晰的信息秩序</p>
+            </div>
+            <b>Complex Business</b>
+          </article>
+          <article class="about-card">
+            <div>
+              <div class="about-icon"><svg class="icon" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6Z"/><path d="m9 12 2 2 4-5"/></svg></div>
+              <h3>从策略到落地</h3>
+              <p>覆盖用户研究、服务蓝图、交互、UI、验证及设计系统沉淀</p>
+            </div>
+            <b>Design Ownership</b>
+          </article>
+          <article class="about-card">
+            <div>
+              <div class="about-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h6"/></svg></div>
+              <h3>AI 产品实践</h3>
+              <p>围绕支付宝式 AI 办事、生活决策与服务推荐场景，推动 AI 能力进入真实任务链路</p>
+            </div>
+            <b>AI Product Design</b>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <h2>正在寻找支付与生活服务方向的资深 UIUX 产品体验机会</h2>
+        <p class="contact-subtitle">如果你也在做支付、生活服务、平台产品或 AI 体验，欢迎通过以下方式与我联系</p>
+        <div class="contact-panel" id="contact-details" aria-label="联系方式">
+          <a href="tel:18600822857">手机：18600822857</a>
+          <a href="mailto:nathan01@126.com">邮箱：nathan01@126.com</a>
+          <span>微信：NathanNan_</span>
+          <a class="contact-resume" href="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/nanxiaofei-resume-preview.png" data-resume-preview>下载文字简历</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 斐波那契 Portfolio</span>
+      <span>UI/UX Portfolio</span>
+    </footer>
+  </div>
+
+  <div class="user-cursor-layer" aria-hidden="true">
+    <div class="user-cursor-label">Nathan</div>
+    <div class="user-cursor-arrow">
+      <svg width="31" height="31" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 3 L23 14 L14 16 L11 24 Z" fill="#FFFFFF" stroke="rgba(0,0,0,0.18)" stroke-width="0.6" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="resume-modal" role="dialog" aria-modal="true" aria-label="简历预览" aria-hidden="true">
+    <div class="resume-modal-panel">
+      <header class="resume-modal-toolbar">
+        <button class="resume-modal-back" type="button" aria-label="返回作品集">← 返回作品集</button>
+        <a class="resume-modal-download" href="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/nanxiaofei-resume-preview.png" download="斐波那契-文字简历.png">下载图片版简历 ↓</a>
+      </header>
+      <div class="resume-modal-document" tabindex="0" aria-label="简历预览，可上下滚动">
+        <img class="resume-modal-preview-image" src="https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/nanxiaofei-resume-preview.png" alt="斐波那契 UI/UX 设计师文字简历预览">
+      </div>
+    </div>
+  </div>
+
+  <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" aria-hidden="true">
+    <div class="project-modal-panel">
+      <header class="project-modal-header">
+        <div class="project-modal-kicker"></div>
+        <h2 class="project-modal-title" id="project-modal-title"></h2>
+        <p class="project-modal-summary"></p>
+      </header>
+      <div class="project-modal-stage">
+        <div class="project-modal-media"></div>
+      </div>
+      <footer class="project-modal-footer">
+        <button class="project-modal-nav project-modal-prev" type="button" aria-label="上一张">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="project-modal-count" aria-live="polite"></div>
+        <button class="project-modal-nav project-modal-next" type="button" aria-label="下一张">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </footer>
+    </div>
+    <button class="project-modal-close" type="button" aria-label="关闭项目弹窗">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <script>
+    const links = [...document.querySelectorAll(".nav-links a")];
+    const anchorLinks = [...document.querySelectorAll('a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const practiceTrack = document.querySelector(".practice-track");
+
+    // 后续只需在对应 slides 中加入 { src: "图片路径", alt: "图片说明" }。
+    const projectEntries = {
+      "case-01": {
+        kicker: "PROJECT 03 / ALIPAY SERVICE DISCOVERY",
+        title: "首页服务发现改版",
+        summary: "重构支付宝首页频道与服务发现秩序，提升服务查找效率与频道点击率",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-001.png", alt: "招聘大类页改版项目内容 001" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-002.png", alt: "招聘大类页改版项目内容 002" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-003.png", alt: "招聘大类页改版项目内容 003" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-004.png", alt: "招聘大类页改版项目内容 004" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-005.png", alt: "招聘大类页改版项目内容 005" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-006.png", alt: "招聘大类页改版项目内容 006" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/招聘大类页改版/3-007.png", alt: "招聘大类页改版项目内容 007" }
+        ]
+      },
+      "case-02": {
+        kicker: "PROJECT 02 / AI LIFE DECISION ASSISTANT",
+        title: "AI生活决策助手",
+        summary: "将 AI 能力嵌入理财、缴费与生活决策关键节点，降低理解成本与操作成本",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-001.png", alt: "AI求职助手项目内容 001" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-002.png", alt: "AI求职助手项目内容 002" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-003.png", alt: "AI求职助手项目内容 003" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-004.png", alt: "AI求职助手项目内容 004" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-005.png", alt: "AI求职助手项目内容 005" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-006.png", alt: "AI求职助手项目内容 006" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-007.png", alt: "AI求职助手项目内容 007" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-008.png", alt: "AI求职助手项目内容 008" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-009.png", alt: "AI求职助手项目内容 009" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-010.png", alt: "AI求职助手项目内容 010" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-011.png", alt: "AI求职助手项目内容 011" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-012.png", alt: "AI求职助手项目内容 012" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-013.png", alt: "AI求职助手项目内容 013" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-014.m4v", type: "video", alt: "AI求职助手项目视频 014" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-015.png", alt: "AI求职助手项目内容 015" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-016.png", alt: "AI求职助手项目内容 016" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-017.m4v", type: "video", alt: "AI求职助手项目视频 017" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-018.png", alt: "AI求职助手项目内容 018" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI求职助手/2-019.png", alt: "AI求职助手项目内容 019" }
+        ]
+      },
+      "case-03": {
+        kicker: "PROJECT 01 / AI SERVICE ASSISTANT",
+        title: "AI办事助手",
+        summary: "通过 AI 办事助手前置理解用户诉求，帮助用户更快匹配服务与完成关键流程",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-001.png", alt: "AI面试项目内容 001" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-002.png", alt: "AI面试项目内容 002" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-003.png", alt: "AI面试项目内容 003" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-004.png", alt: "AI面试项目内容 004" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-005.png", alt: "AI面试项目内容 005" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-006.png", alt: "AI面试项目内容 006" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-007.png", alt: "AI面试项目内容 007" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-008.png", alt: "AI面试项目内容 008" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-009.png", alt: "AI面试项目内容 009" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-010.png", alt: "AI面试项目内容 010" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-011.png", alt: "AI面试项目内容 011" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-012.png", alt: "AI面试项目内容 012" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-013.png", alt: "AI面试项目内容 013" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-014.png", alt: "AI面试项目内容 014" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-015.png", alt: "AI面试项目内容 015" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-016.png", alt: "AI面试项目内容 016" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-017.png", alt: "AI面试项目内容 017" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/AI面试/1-018.png", alt: "AI面试项目内容 018" }
+        ]
+      },
+      "case-04": {
+        kicker: "PROJECT 04 / IN-STORE CONSUMPTION",
+        title: "到店消费核销体验",
+        summary: "连接线上领券、到店核销与支付后反馈，减少等待和沟通成本",
+        slides: [{ alt: "到店消费核销体验项目图片" }]
+      },
+      "practice-01": {
+        kicker: "DESIGN PRACTICE 01",
+        title: "支付宝新手成长专区",
+        summary: "围绕新用户理解、引导与首单转化设计成长路径",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/英才新手村 App/001.png", alt: "英才新手村 App项目内容 001" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/英才新手村 App/002.png", alt: "英才新手村 App项目内容 002" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/英才新手村 App/003.png", alt: "英才新手村 App项目内容 003" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/英才新手村 App/004.png", alt: "英才新手村 App项目内容 004" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/英才新手村 App/005.png", alt: "英才新手村 App项目内容 005" }
+        ]
+      },
+      "practice-02": {
+        kicker: "DESIGN PRACTICE 02",
+        title: "商家内容生成助手",
+        summary: "帮助商家更快生成活动素材与服务介绍内容",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/混剪智能体/001.png", alt: "混剪智能体项目内容 001" }
+        ]
+      },
+      "practice-03": {
+        kicker: "DESIGN PRACTICE 03",
+        title: "支付宝品牌表情",
+        summary: "建立品牌情绪表达体系，服务节庆传播与站内互动",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/赶集表情包/001.png", alt: "赶集表情包项目内容 001" }
+        ]
+      },
+      "practice-04": {
+        kicker: "DESIGN PRACTICE 04",
+        title: "支付宝节日主题换肤",
+        summary: "在节庆节点统一首页氛围与活动触点表达",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/赶集节日换肤/001.png", alt: "赶集节日换肤项目内容 001" }
+        ]
+      },
+      "practice-05": {
+        kicker: "DESIGN PRACTICE 05",
+        title: "支付宝设计系统建设",
+        summary: "建设跨端组件规范，提升设计与研发协作效率",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/赶集组件库建设/001.png", alt: "赶集组件库建设项目内容 001" }
+        ]
+      },
+      "practice-06": {
+        kicker: "DESIGN PRACTICE 06",
+        title: "支付宝运营活动支持",
+        summary: "支持大促、节点活动与频道运营的多场景设计需求",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/运营支持/001.png", alt: "运营支持项目内容 001" }
+        ]
+      },
+      "practice-07": {
+        kicker: "DESIGN PRACTICE 07",
+        title: "AI辅助服务设计",
+        summary: "用 AI 提升服务蓝图梳理、页面生成与方案验证效率",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/AI辅助虚拟项目/001.png", alt: "AI辅助设计项目内容 001" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/AI辅助虚拟项目/002.png", alt: "AI辅助设计项目内容 002" }
+        ]
+      },
+      "practice-08": {
+        kicker: "DESIGN PRACTICE 08",
+        title: "支付宝轻量小程序增长",
+        summary: "围绕小程序拉新、留存与转化设计双端协同体验",
+        slides: [
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/零工小程序C&B/001.png", alt: "零工小程序 C&B项目内容 001" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/零工小程序C&B/002.png", alt: "零工小程序 C&B项目内容 002" },
+          { src: "https://kimi20180421.github.io/ai-designer-lead-course/coading-portfolio/nanxiaofei-portfolio-replica/更多设计实践/零工小程序C&B/003.png", alt: "零工小程序 C&B项目内容 003" }
+        ]
+      }
+    };
+
+    const resumeModal = document.querySelector(".resume-modal");
+    const resumeBack = resumeModal?.querySelector(".resume-modal-back");
+    let resumeTrigger = null;
+
+    const openResume = (trigger) => {
+      if (!resumeModal) return;
+      resumeTrigger = trigger || document.activeElement;
+      document.body.classList.add("modal-open");
+      resumeModal.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => resumeModal.classList.add("is-open"));
+      window.setTimeout(() => resumeBack?.focus(), 180);
+    };
+
+    const closeResume = () => {
+      if (!resumeModal?.classList.contains("is-open")) return;
+      resumeModal.classList.remove("is-open");
+      resumeModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      window.setTimeout(() => resumeTrigger?.focus?.(), 180);
+    };
+
+    document.querySelectorAll("[data-resume-preview]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        openResume(link);
+      });
+    });
+    resumeBack?.addEventListener("click", closeResume);
+    resumeModal?.addEventListener("click", (event) => {
+      if (event.target === resumeModal) closeResume();
+    });
+
+    const projectModal = document.querySelector(".project-modal");
+    const modalKicker = projectModal?.querySelector(".project-modal-kicker");
+    const modalTitle = projectModal?.querySelector(".project-modal-title");
+    const modalSummary = projectModal?.querySelector(".project-modal-summary");
+    const modalMedia = projectModal?.querySelector(".project-modal-media");
+    const modalCount = projectModal?.querySelector(".project-modal-count");
+    const modalPrev = projectModal?.querySelector(".project-modal-prev");
+    const modalNext = projectModal?.querySelector(".project-modal-next");
+    const modalClose = projectModal?.querySelector(".project-modal-close");
+    let currentProject = null;
+    let currentSlideIndex = 0;
+    let projectTrigger = null;
+
+    const positionModalClose = () => {
+      if (!projectModal || !modalClose) return;
+      const panel = projectModal.querySelector(".project-modal-panel");
+      const media = modalMedia?.firstElementChild;
+      const rect = media?.getBoundingClientRect() || panel?.getBoundingClientRect();
+      if (!rect) return;
+      const size = modalClose.offsetWidth || 38;
+      const gap = 34;
+      const left = Math.min(window.innerWidth - size - gap, rect.right + gap);
+      projectModal.style.setProperty("--modal-close-left", `${left}px`);
+    };
+
+    const renderProjectSlide = () => {
+      if (!currentProject || !modalMedia) return;
+      const slides = currentProject.slides?.length ? currentProject.slides : [{}];
+      modalMedia.replaceChildren();
+
+      slides.forEach((slide, index) => {
+        if (slide.src && slide.type === "video") {
+          const video = document.createElement("video");
+          video.src = slide.src;
+          video.autoplay = true;
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.controls = true;
+          video.preload = "metadata";
+          video.setAttribute("aria-label", slide.alt || `${currentProject.title} 项目视频 ${index + 1}`);
+          modalMedia.appendChild(video);
+        } else if (slide.src) {
+          const image = document.createElement("img");
+          image.src = slide.src;
+          image.alt = slide.alt || `${currentProject.title} 项目图片 ${index + 1}`;
+          image.draggable = false;
+          modalMedia.appendChild(image);
+        } else {
+          const placeholder = document.createElement("div");
+          placeholder.className = "project-placeholder";
+          placeholder.textContent = "项目图片待补充";
+          modalMedia.appendChild(placeholder);
+        }
+      });
+    };
+
+    const openProject = (key, trigger) => {
+      const entry = projectEntries[key];
+      if (!entry || !projectModal) return;
+      currentProject = entry;
+      currentSlideIndex = 0;
+      projectTrigger = trigger || document.activeElement;
+      modalKicker.textContent = entry.kicker;
+      modalTitle.textContent = entry.title;
+      modalSummary.textContent = entry.summary;
+      renderProjectSlide();
+      document.body.classList.add("modal-open");
+      projectModal.scrollTop = 0;
+      projectModal.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => {
+        projectModal.classList.add("is-open");
+        positionModalClose();
+      });
+      window.setTimeout(() => modalClose?.focus(), 180);
+    };
+
+    const closeProject = () => {
+      if (!projectModal?.classList.contains("is-open")) return;
+      projectModal.classList.remove("is-open");
+      projectModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      window.setTimeout(() => projectTrigger?.focus?.(), 180);
+    };
+
+    const moveProjectSlide = (direction) => {
+      if (!currentProject) return;
+      const total = currentProject.slides?.length || 1;
+      const nextIndex = Math.max(0, Math.min(total - 1, currentSlideIndex + direction));
+      if (nextIndex === currentSlideIndex) return;
+      currentSlideIndex = nextIndex;
+      renderProjectSlide();
+    };
+
+    modalClose?.addEventListener("click", closeProject);
+    modalPrev?.addEventListener("click", () => moveProjectSlide(-1));
+    modalNext?.addEventListener("click", () => moveProjectSlide(1));
+    projectModal?.addEventListener("click", (event) => {
+      if (event.target === projectModal) closeProject();
+    });
+    window.addEventListener("resize", () => {
+      if (projectModal?.classList.contains("is-open")) positionModalClose();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && resumeModal?.classList.contains("is-open")) {
+        closeResume();
+        return;
+      }
+      if (!projectModal?.classList.contains("is-open")) return;
+      if (event.key === "Escape") closeProject();
+    });
+
+    document.querySelectorAll(".case-card[data-project]").forEach((card) => {
+      const activate = () => openProject(card.dataset.project, card);
+      card.addEventListener("click", activate);
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          activate();
+        }
+      });
+    });
+
+    if (practiceTrack) {
+      const ring = practiceTrack.querySelector(".practice-ring");
+      const sourceCards = [...ring.querySelectorAll(".practice-card")];
+      sourceCards.forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.classList.add("is-carousel-clone");
+        clone.setAttribute("aria-label", card.getAttribute("aria-label"));
+        ring.appendChild(clone);
+      });
+      const cards = [...ring.querySelectorAll(".practice-card")];
+      let hoveredIndex = -1;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let carouselOffset = 0;
+      let carouselLoopWidth = 0;
+      let carouselLastFrame = performance.now();
+      let carouselFrame = 0;
+      let pointerInsideTrack = false;
+      let pointerDownOnTrack = false;
+      let resumeCarouselAt = 0;
+
+      const layoutCarousel = () => {
+        const firstOriginal = cards[0];
+        const firstClone = cards[sourceCards.length];
+        carouselLoopWidth = firstClone.offsetLeft - firstOriginal.offsetLeft;
+        if (!Number.isFinite(carouselLoopWidth) || carouselLoopWidth <= 0) return;
+        if (carouselOffset === 0) carouselOffset = -carouselLoopWidth / 2;
+        while (carouselOffset <= -carouselLoopWidth) carouselOffset += carouselLoopWidth;
+        while (carouselOffset > 0) carouselOffset -= carouselLoopWidth;
+      };
+
+      const applyCarousel = () => {
+        ring.style.transform = `translate3d(${carouselOffset}px, 0, 0)`;
+      };
+
+      const stepCarousel = (direction) => {
+        const cardStep = (cards[0]?.offsetWidth || 280) + 18;
+        carouselOffset -= direction * cardStep;
+        if (carouselLoopWidth > 0) {
+          while (carouselOffset <= -carouselLoopWidth) carouselOffset += carouselLoopWidth;
+          while (carouselOffset > 0) carouselOffset -= carouselLoopWidth;
+        }
+        applyCarousel();
+      };
+
+      cards.forEach((card, index) => {
+        card.draggable = false;
+        card.querySelectorAll("*").forEach((child) => {
+          child.draggable = false;
+        });
+        card.addEventListener("dragstart", (event) => {
+          event.preventDefault();
+        });
+        card.addEventListener("mouseenter", () => {
+          hoveredIndex = index;
+          practiceTrack.classList.add("has-hover");
+        });
+        card.addEventListener("mouseleave", () => {
+          if (hoveredIndex !== index) return;
+          hoveredIndex = -1;
+          practiceTrack.classList.remove("has-hover");
+        });
+        card.addEventListener("click", (event) => {
+          event.stopPropagation();
+          openProject(card.dataset.project, card);
+        });
+        card.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") return;
+          event.preventDefault();
+          openProject(card.dataset.project, card);
+        });
+      });
+      practiceTrack.addEventListener("keydown", (event) => {
+        if (projectModal?.classList.contains("is-open")) return;
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          stepCarousel(1);
+        } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          stepCarousel(-1);
+        }
+      });
+
+      practiceTrack.addEventListener("pointerenter", (event) => {
+        if (event.pointerType !== "mouse") return;
+        pointerInsideTrack = true;
+      });
+      practiceTrack.addEventListener("pointerleave", (event) => {
+        if (event.pointerType !== "mouse") return;
+        pointerInsideTrack = false;
+        resumeCarouselAt = performance.now() + 900;
+      });
+      practiceTrack.addEventListener("pointerdown", () => {
+        pointerDownOnTrack = true;
+      });
+      window.addEventListener("pointerup", (event) => {
+        if (!pointerDownOnTrack) return;
+        pointerDownOnTrack = false;
+        if (event.pointerType !== "mouse") resumeCarouselAt = performance.now() + 1600;
+      });
+      window.addEventListener("pointercancel", () => {
+        pointerDownOnTrack = false;
+        resumeCarouselAt = performance.now() + 1600;
+      });
+
+      const tickCarousel = (now) => {
+        const delta = Math.min(48, now - carouselLastFrame);
+        carouselLastFrame = now;
+        const paused = document.hidden
+          || pointerInsideTrack
+          || pointerDownOnTrack
+          || hoveredIndex >= 0
+          || now < resumeCarouselAt
+          || projectModal?.classList.contains("is-open");
+        if (!reducedMotion && !paused && carouselLoopWidth > 0) {
+          carouselOffset -= delta * .035;
+          if (carouselOffset <= -carouselLoopWidth) carouselOffset += carouselLoopWidth;
+        }
+        applyCarousel();
+        carouselFrame = window.requestAnimationFrame(tickCarousel);
+      };
+
+      practiceTrack.tabIndex = 0;
+      layoutCarousel();
+      applyCarousel();
+      carouselFrame = window.requestAnimationFrame(tickCarousel);
+      let carouselResizeFrame = 0;
+      window.addEventListener("resize", () => {
+        window.cancelAnimationFrame(carouselResizeFrame);
+        carouselResizeFrame = window.requestAnimationFrame(() => {
+          layoutCarousel();
+          applyCarousel();
+        });
+      });
+    }
+
+    const typewriterTitle = document.querySelector(".typewriter-title");
+    if (typewriterTitle) {
+      const textNode = typewriterTitle.querySelector(".typewriter-text");
+      const text = typewriterTitle.dataset.typewriterText || "";
+      let index = 0;
+      const typeNext = () => {
+        textNode.textContent = text.slice(0, index);
+        if (index <= text.length) {
+          index += 1;
+          window.setTimeout(typeNext, 70);
+        }
+      };
+      window.setTimeout(typeNext, 350);
+    }
+
+    const cursorLayer = document.querySelector(".user-cursor-layer");
+    const cursorArrow = document.querySelector(".user-cursor-arrow");
+    const cursorLabel = document.querySelector(".user-cursor-label");
+    if (cursorLayer && cursorArrow && cursorLabel && window.matchMedia("(pointer: fine)").matches) {
+      document.body.classList.add("has-custom-cursor");
+      let mouseX = -9999;
+      let mouseY = -9999;
+      let arrowX = mouseX;
+      let arrowY = mouseY;
+      let labelX = mouseX;
+      let labelY = mouseY;
+      let lastX = mouseX;
+      let lastTime = performance.now();
+      let pressed = false;
+
+      practiceTrack?.addEventListener("mousemove", (event) => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+        cursorLayer.classList.add("is-visible");
+      });
+      practiceTrack?.addEventListener("mousedown", () => { pressed = true; });
+      window.addEventListener("mouseup", () => { pressed = false; });
+      practiceTrack?.addEventListener("mouseleave", () => {
+        pressed = false;
+        cursorLayer.classList.remove("is-visible");
+      });
+
+      const tickCursor = () => {
+        const now = performance.now();
+        const dt = Math.max(1, now - lastTime);
+        const vx = ((mouseX - lastX) / dt) * 1000;
+        const tilt = Math.max(-25, Math.min(25, vx / 60));
+        arrowX += (mouseX - arrowX) * .32;
+        arrowY += (mouseY - arrowY) * .32;
+        labelX += (mouseX + 28 - labelX) * .18;
+        labelY += (mouseY + 12 - labelY) * .18;
+        const scale = pressed ? .92 : 1;
+        cursorArrow.style.transform = `translate3d(${arrowX}px, ${arrowY}px, 0) scale(${scale})`;
+        cursorLabel.style.transform = `translate3d(${labelX}px, ${labelY}px, 0) rotate(${tilt}deg) scale(${scale})`;
+        lastX = mouseX;
+        lastTime = now;
+        requestAnimationFrame(tickCursor);
+      };
+      tickCursor();
+    }
+
+    const setActive = () => {
+      const current = sections.reduce((match, section) => {
+        const top = section.getBoundingClientRect().top;
+        return top <= 140 ? section : match;
+      }, sections[0]);
+
+      links.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${current.id}`);
+      });
+    };
+
+    anchorLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    window.addEventListener("scroll", setActive, { passive: true });
+    setActive();
+  </script>
+</body>
+</html>
